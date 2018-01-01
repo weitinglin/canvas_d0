@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<!--
+  * Please see the included README.md file for license terms and conditions.
+  -->
+<head>
+    <title>Canvas Histogram practice</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <style>
+        #myCanvas {
+        border:5px solid black;
+    }
+    </style>
+    <script>
+        var canvas, ctx;
+        var data = [1, 12, 20, 14, 13, 9, 5];
+        function init() {
+// This function is called after the page is loaded
+// 1 - Get the canvas
+         canvas = document.getElementById('myCanvas');
+// 2 - Get the context
+         ctx=canvas.getContext('2d');
+// 3 - we can draw
+         //drawSomething(100,100,'red');
+         //drawSomething(200,100,'blue');
+         //drawSomething(150,200,'green');    
+        drawHistogram(data,'red');
+        }
+        
+        function drawSomething(x,y,color) {
+// Best practice save
+            ctx.save();
+            ctx.translate(x,y)
+            ctx.fillStyle=color;
+            ctx.fillRect(0,0,100,100);
+            ctx.restore();
+        }
+        
+        function drawHistogram(data, color) {
+            for ( var i = 0; i < data.length; i ++ ) {
+            ctx.save();
+            ctx.translate(10+65*i,495);
+            ctx.fillStyle=color;
+            ctx.fillRect(0,0,60,-data[i]*22)
+            ctx.restore();
+            }
+    
+            
+        }
+    </script>
+</head>
+
+<body  onload="init();">
+    <header>Canvas Practice</header>
+    <canvas id="myCanvas" width="500" height="500">
+        Fallback content that will be displayed in case the web browser
+        does not support the canvas tag or in case scripting
+        is disabled.
+    </canvas>
+
+</body>
+</html>
